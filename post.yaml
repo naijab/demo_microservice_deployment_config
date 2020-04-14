@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: demo-ms-post-service
+spec:
+  selector:
+    matchLabels:
+      foo: post-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        foo: post-service
+    spec:
+      containers:
+        - name: demo-ms-post-service
+          image: docker.pkg.github.com/naijab/demo_microservice_post_service/post-service:1.0
+          ports:
+            - containerPort: 1332
