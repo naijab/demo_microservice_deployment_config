@@ -11,8 +11,8 @@
 5. `kubectl create -f namespace-dev.json` for create namespace for dev (default namespace)
 6. `kubectl apply -f api-gateway.yaml` for create kong api gateway controller
 7. `kubectl apply -f rate-limit.yaml` for use kong rate limit plugin
-8. `kubectl apply -f user-service.yaml` for expose service port [http://localhost:1331](http://localhost:1331)
-9. `kubectl apply -f post-service.yaml` for expose service port [http://localhost:1332](http://localhost:1332)
+8. `kubectl apply -f user-service.yaml` for expose service [http://localhost/api/user](http://localhost/api/user)
+9. `kubectl apply -f post-service.yaml` for expose service [http://localhost/api/post](http://localhost/api/post))
 10. If Production Server must download config.yaml of k8s to can apply deployment
 
 ## Link
