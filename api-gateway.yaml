@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: api-gateway
+  namespace: demo-micro-service-development
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+    konghq.com/plugins: "rate-limit-by-ip"
+    #kubernetes.io/tls-acme: "true"
+    #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  #tls:
+  #  - secretName: api-gateway
+  #    hosts:
+  #Change domain to real domain
+  #     - domain.com
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - path: /api/user
+            backend:
+              serviceName: user-service
+              servicePort: 1331
+          - path: /api/post
+            backend:
+              serviceName: post-service
+              servicePort: 1332

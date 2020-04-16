@@ -6,7 +6,7 @@ metadata:
   labels:
     app: user-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 1331
       targetPort: 1331
