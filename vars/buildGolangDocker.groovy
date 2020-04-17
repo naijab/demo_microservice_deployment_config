@@ -43,10 +43,10 @@ def call(Map params) {
 
     post{
       success{
-          LineNotify.send(params.lineToken, "succeed")
+          @LineNotify.send(params.lineToken, "succeed")
       }
       failure{
-          LineNotify.send(params.lineToken, "failed")
+          @LineNotify.send(params.lineToken, "failed")
       }
     }
   }
