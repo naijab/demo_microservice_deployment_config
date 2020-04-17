@@ -12,14 +12,14 @@ def call(Map params) {
     stages {
       stage('Checkout Git') {
         steps {
-            git branch: param.branch, credentialsId: param.gitCredentialsId, url: param.gitUrl
+            git branch: params.branch, credentialsId: params.gitCredentialsId, url: params.gitUrl
         }
       }
 
       stage('Build Docker Image') {
         steps {
           script {
-            dockerImage = docker.build param.dockerRegistry + ":$BUILD_NUMBER"
+            dockerImage = docker.build params.dockerRegistry + ":$BUILD_NUMBER"
           }
         }
       }
@@ -36,7 +36,7 @@ def call(Map params) {
 
       stage('Remove Unused docker image') {
         steps{
-          sh "docker rmi $param.dockerRegistry:$BUILD_NUMBER"
+          sh "docker rmi $params.dockerRegistry:$BUILD_NUMBER"
         }
       }
     }
