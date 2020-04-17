@@ -53,7 +53,6 @@ def call(Map params) {
 }
 
 def notifyLINE(token, status) {
-    def token = line
     def jobName = env.JOB_NAME +' '+env.BRANCH_NAME
     def buildNo = env.BUILD_NUMBER
       
