@@ -10,7 +10,7 @@ def call(Map params) {
     stages {
       stage('Checkout Git') {
         steps {
-            git branch: param.branch, credentialsId: 'GitCredentials', url: param.gitUrl
+            git branch: param.branch, credentialsId: param.gitCredentialsId, url: param.gitUrl
         }
       }
 
