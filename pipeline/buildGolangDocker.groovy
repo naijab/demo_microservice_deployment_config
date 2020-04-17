@@ -17,7 +17,7 @@ def call(Map params) {
       stage('Build Docker Image') {
         steps {
           script {
-            dockerImage = docker.build param.dockerRegistry + ":$BUILD_NUMBER")
+            dockerImage = docker.build param.dockerRegistry + ":$BUILD_NUMBER"
           }
         }
       }
