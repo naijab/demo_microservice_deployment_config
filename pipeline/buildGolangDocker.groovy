@@ -2,19 +2,22 @@ def call(Map params) {
   pipeline {
     agent any
 
-    def app
+    environment {
+      registryCredential = 'dockerhub'
+      dockerImage = ''
+    } 
 
     stages {
       stage('Checkout Git') {
         steps {
-            git branch: param.branch, credentialsId: 'GitCredentials', url: param.scmUrl
+            git branch: param.branch, credentialsId: 'GitCredentials', url: param.gitUrl
         }
       }
 
       stage('Build Docker Image') {
         steps {
           script {
-            app = docker.build param.dockerImage + ":$BUILD_NUMBER")
+            dockerImage = docker.build param.dockerRegistry + ":$BUILD_NUMBER")
           }
         }
       }
@@ -31,7 +34,7 @@ def call(Map params) {
 
       stage('Remove Unused docker image') {
         steps{
-          sh "docker rmi $param.dockerImage:$BUILD_NUMBER"
+          sh "docker rmi $param.dockerRegistry:$BUILD_NUMBER"
         }
       }
     }
