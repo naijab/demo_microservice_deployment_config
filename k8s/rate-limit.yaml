@@ -1,0 +1,11 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: rate-limit
+  labels:
+    global: "true"
+config:
+  minute: 5
+  limit_by: consumer
+  policy: local
+plugin: rate-limiting
