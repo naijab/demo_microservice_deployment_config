@@ -1,4 +1,4 @@
-#!groovy
+import com.naijab.pipeline.LineNotify
 
 def call(Map params) {
   pipeline {
@@ -43,20 +43,12 @@ def call(Map params) {
 
     post{
       success{
-          notifyLINE(params.lineToken, "succeed")
+          LineNotify.send(params.lineToken, "succeed")
       }
       failure{
-          notifyLINE(params.lineToken, "failed")
+          LineNotify.send(params.lineToken, "failed")
       }
     }
   }
 }
 
-def notifyLINE(token, status) {
-    def jobName = env.JOB_NAME +' '+env.BRANCH_NAME
-    def buildNo = env.BUILD_NUMBER
-      
-    def url = 'https://notify-api.line.me/api/notify'
-    def message = "${jobName} Build #${buildNo} ${status} \r\n"
-    sh "curl ${url} -H 'Authorization: Bearer ${token}' -F 'message=${message}'"
-}
